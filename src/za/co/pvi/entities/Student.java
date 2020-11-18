@@ -10,9 +10,11 @@ public class Student {
 	private String lastName;
 	private String email;
 
+	private Course course;
+	
+	
 	public Student() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Student(int id, String firstName, String lastName, String email) {
@@ -21,6 +23,14 @@ public class Student {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
 	}
 
 	public int getId() {
@@ -65,12 +75,12 @@ public class Student {
 	String user = "root";
 	String password = "pvi@2019";
 	
-	public void addToDb(int id, String firstName, String lastName, String email) {
+	public void addToDb(int id, String firstName, String lastName, String email,Course course) {
 		
 		System.out.println("Insert Started.....");
 
-		String insert = "INSERT INTO STUDENT(ID,FIRST_NAME,EMAIL,LAST_NAME) VALUES(" + id + ",'" + firstName + "','"
-				+ email + "','" + lastName +"')";
+		String insert = "INSERT INTO STUDENT(ID,FIRST_NAME,EMAIL,LAST_NAME,COURSE_ID) VALUES(" + id + ",'" + firstName + "','"
+				+ email + "','" + lastName +"',"+ course.getId()+")";
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");

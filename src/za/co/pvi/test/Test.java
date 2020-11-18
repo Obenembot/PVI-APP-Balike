@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
 
+import za.co.pvi.entities.Course;
 import za.co.pvi.entities.Student;
 
 public class Test {
@@ -13,6 +14,8 @@ public class Test {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		Student student = null;
+		Course course = null;
+		
 
 		Connection connection;
 		Statement statement = null;
@@ -36,21 +39,27 @@ public class Test {
 
 			switch (option) {
 			case 1:
-				student = new Student(2, "Tabi", "Oben", "oben@gmail.com");
-				student.addToDb(student.getId(), student.getFirstName(), student.getLastName(), student.getEmail());
+				course = new Course(17, " Management", "17 Months");
+
+				student = new Student(4, "oBEN", "Oben", "TABI@gmail.com");
+
+				course.insertCourse(course.getId(), course.getCourseName(), course.getDuration());
+
+				student.addToDb(student.getId(), student.getFirstName(), student.getLastName(), student.getEmail(),
+						course);
 
 				break;
 
 			case 2:
 				student = new Student(10, "Peter", "Paul", "peter@gmail.com");
 
-				 student.updateStudent(student.getFirstName(), student.getLastName(),
-				 student.getEmail(), student.getId());
+				student.updateStudent(student.getFirstName(), student.getLastName(), student.getEmail(),
+						student.getId());
 
 				break;
 			case 3:
 				int id = 1;
-				statement.execute("delete from STUDENT where ID ="+id);
+				statement.execute("delete from STUDENT where ID =" + id);
 				System.out.println("Delete complete...");
 				break;
 
